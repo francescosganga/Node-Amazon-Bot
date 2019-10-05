@@ -10,6 +10,26 @@ Node Amazon Bot works using two functions:
 
 Sent URLs were converted to amzn.to's shorten url using bit.ly API
 
+### bestSellers Structure
+
+in config.js you need to set config.server.url. You can build a node.js or PHP server for get Amazon Products. The structure of products must be:
+```javascript
+[
+	{
+		"ASIN":"B06XFSZGCC",
+		"Title":"Samsung Memorie MB-MC32GA EVO Plus Scheda microSD da 32 GB, UHS-I U1, con Adattatore SD",
+		"image":"https:\/\/images-eu.ssl-images-amazon.com\/images\/I\/41EGoaEy1DL._SL160_.jpg",
+		"price":"3.80"
+	},
+	{
+		"ASIN":"B07PVCVBN7",
+		"Title":"Fire TV Stick con telecomando vocale Alexa | Lettore multimediale",
+		"image":"https:\/\/images-eu.ssl-images-amazon.com\/images\/I\/31NqWb-sAGL._SL160_.jpg",
+		"price":"39.99"
+	}
+]
+```
+
 ### Prerequisites
 
 You need to have:
