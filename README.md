@@ -12,7 +12,7 @@ Sent URLs were converted to amzn.to's shorten url using bit.ly API
 
 ### bestSellers Structure
 
-in config.js you need to set config.server.url. You can build a node.js or PHP server for get Amazon Products. The structure of products must be:
+in config.js you need to set config.server.url. You can build a node.js or PHP server for get Amazon Products. Products will be read from Node Amazon Bot as JSON Array like this:
 ```javascript
 [
 	{
