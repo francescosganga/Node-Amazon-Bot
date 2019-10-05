@@ -1,0 +1,28 @@
+{
+  "name": "node-amazon-bot",
+  "version": "0.0.1",
+  "description": "Simple Telegram Amazon Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/francescosganga/NodeTBot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/francescosganga/NodeTBot/issues"
+  },
+  "homepage": "https://github.com/francescosganga/NodeTBot#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "bitly": "^6.1.0",
+    "fs": "0.0.1-security",
+    "node-cron": "^2.0.3",
+    "path": "^0.12.7",
+    "request": "^2.88.0",
+    "telegraf": "^3.32.0"
+  }
+}
