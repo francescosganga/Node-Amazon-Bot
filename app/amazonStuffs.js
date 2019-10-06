@@ -58,7 +58,8 @@ exports.updateBestSellers = function() {
 			});
 		} else {
 			console.log("Error while fetching best sellers...");
-			console.log(response.statusCode);
+			console.log("Status Code: " + response.statusCode);
+			console.log(response.error);
 		}
 	})
 }
