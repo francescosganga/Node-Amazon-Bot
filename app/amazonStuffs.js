@@ -12,14 +12,23 @@ var path = require('path');
 
 exports.bestSellersToTelegram = function() {
 	fs.readdir('products/', function(err, files) {
+		found = false;
 		files.forEach(function(i) {
-			i = 'products/' + i;
-			if(path.extname(i) == ".json") {
-				product = fs.readFileSync(i);
-				product = JSON.parse(product);
-				if(product.status == 'new') {
-					bot.telegram.sendPhoto(config.telegram.chatId, product.image, {caption: "\n" + product.title + "\n\n 💵 " + product.price + "\n\n" + product.url});
-					console.log(product.asin + " - product sent to Telegram!");
+			if(found !== true) {
+				i = 'products/' + i;
+				if(path.extname(i) == ".json") {
+					product = fs.readFileSync(i);
+					product = JSON.parse(product);
+					if(product.status == 'new') {
+						if(product.title !== "" && product.price !== "" && product.url !== "") {
+							bot.telegram.sendPhoto(config.telegram.chatId, product.image, {caption: "\n" + product.title + "\n\n 💵 " + product.price + "\n\n" + product.url});
+							console.log(product.asin + " - product sent to Telegram!");
+							found = true;
+						} else {
+							console.log(product.asin + " - error (some fields are empty)");
+						}
+
+					}
 				}
 			}
 		});
@@ -58,7 +67,6 @@ exports.updateBestSellers = function() {
 			});
 		} else {
 			console.log("Error while fetching best sellers...");
-			console.log("Status Code: " + response.statusCode);
 			console.log(response.error);
 		}
 	})
