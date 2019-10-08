@@ -20,7 +20,7 @@ exports.bestSellersToTelegram = function() {
 					product = fs.readFileSync(i);
 					product = JSON.parse(product);
 					if(product.status == 'new') {
-						if(product.title !== "" && product.price !== "" && product.url !== "") {
+						if(product.title !== "" && product.price !== "€ " && product.url !== "") {
 							bot.telegram.sendPhoto(config.telegram.chatId, product.image, {caption: "\n" + product.title + "\n\n 💵 " + product.price + "\n\n" + product.url});
 							console.log(product.asin + " - product sent to Telegram!");
 							found = true;
@@ -67,7 +67,7 @@ exports.updateBestSellers = function() {
 			});
 		} else {
 			console.log("Error while fetching best sellers...");
-			console.log(response.error);
+			console.log(error);
 		}
 	})
 }
