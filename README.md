@@ -39,11 +39,11 @@ You need to have:
 
 ### Installing
 
-1. git clone https://github.com/francescosganga/nodetbot/
-2. npm install
-3. cp config.sample.js config.js
-4. compile config.js file
-5. node index.js
+1. $ git clone https://github.com/francescosganga/nodetbot/
+2. $ npm install
+3. $ cp config.sample.js config.js
+4. edit config.js file ($ nano config.js)
+5. $ node index.js
 7. enjoy your new Telegram Bot!
 
 ## Authors

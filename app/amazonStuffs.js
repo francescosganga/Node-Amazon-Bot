@@ -21,13 +21,17 @@ exports.bestSellersToTelegram = function() {
 					product = JSON.parse(product);
 					if(product.status == 'new') {
 						if(product.title !== "" && product.price !== "€ " && product.url !== "") {
+							product.status = 'old';
+							fs.writeFileSync('products/' + product.asin + '.json', JSON.stringify(product));
+
 							bot.telegram.sendPhoto(config.telegram.chatId, product.image, {caption: "\n" + product.title + "\n\n 💵 " + product.price + "\n\n" + product.url});
-							console.log(product.asin + " - product sent to Telegram!");
+							console.log("[Node Amazon Bot]$: [" + product.asin + "] - product sent to Telegram!");
 							found = true;
 						} else {
-							console.log(product.asin + " - error (some fields are empty)");
+							console.log("[Node Amazon Bot]$: [" + product.asin + "] - error (some fields are empty)");
 						}
-
+					} else {
+						fs.unlink('products/' + product.asin + '.json');
 					}
 				}
 			}
@@ -38,7 +42,7 @@ exports.bestSellersToTelegram = function() {
 exports.updateBestSellers = function() {
 	request(config.server.url, function(error, response, body) {
 		if(!error && response.statusCode == 200) {
-			console.log("starting updating bestSellers");
+			console.log("[Node Amazon Bot]$: starting updating bestSellers");
 			body = JSON.parse(body);
 			body.forEach(function(i) {
 				if(!fs.existsSync('products/' + i.ASIN + '.json')) {
@@ -54,20 +58,12 @@ exports.updateBestSellers = function() {
 						result.url = shorten_url.url;
 						fs.writeFileSync('products/' + i.ASIN + '.json', JSON.stringify(result));
 					});
-					console.log("saved: " + result.asin);
-				} else {
-					file = fs.readFileSync('products/' + i.ASIN + '.json');
-					var result = JSON.parse(file);
-					if(result.status != 'old') {
-						result.status = "old";
-						fs.writeFileSync('products/' + i.ASIN + '.json', JSON.stringify(result));
-						console.log(result.asin + " already exists, set status to old");
-					}
+					console.log("[Node Amazon Bot]$: [" + result.asin + "] - Saved to products/ directory");
 				}
 			});
 		} else {
-			console.log("Error while fetching best sellers...");
-			console.log(error);
+			console.log("[Node Amazon Bot]$: Error while fetching best sellers...");
+			console.log("[Node Amazon Bot]$: " + error);
 		}
 	})
 }
