@@ -28,10 +28,9 @@ exports.bestSellersToTelegram = function() {
 							console.log("[Node Amazon Bot]$: [" + product.asin + "] - product sent to Telegram!");
 							found = true;
 						} else {
+							fs.unlink('products/' + product.asin + '.json');
 							console.log("[Node Amazon Bot]$: [" + product.asin + "] - error (some fields are empty)");
 						}
-					} else {
-						fs.unlink('products/' + product.asin + '.json');
 					}
 				}
 			}
