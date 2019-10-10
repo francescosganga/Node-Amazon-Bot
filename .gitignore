@@ -88,5 +88,5 @@ typings/
 .dynamodb/
 
 # Products
-products/*
+products/*.json
 config.js
