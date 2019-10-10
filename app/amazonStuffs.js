@@ -26,9 +26,9 @@ exports.bestSellersToTelegram = function() {
 
 							bot.telegram.sendPhoto(config.telegram.chatId, product.image, {caption: "\n" + product.title + "\n\n 💵 " + product.price + "\n\n" + product.url});
 							console.log("[Node Amazon Bot]$: [" + product.asin + "] - product sent to Telegram!");
+							fs.unlink('products/' + product.asin + '.json');
 							found = true;
 						} else {
-							fs.unlink('products/' + product.asin + '.json');
 							console.log("[Node Amazon Bot]$: [" + product.asin + "] - error (some fields are empty)");
 						}
 					}
