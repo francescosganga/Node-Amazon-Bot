@@ -5,7 +5,7 @@ Make your own Amazon Bot running on Nodejs and sending products to Telegram Chan
 ## Getting Started
 
 Node Amazon Bot works using two functions:
-* **updateBestSellers** - update the products' list (stored in products/)
+* **updateBestSellers** - update the products' list (stored in products/ as json files - ASIN.json)
 * **bestSellersToTelegram** - send new best sellers products to the Telegram Channel
 
 Sent URLs were converted to amzn.to's shorten url using bit.ly API
@@ -34,6 +34,8 @@ in config.js you need to set config.server.url. You can build a node.js or PHP s
 
 You need to have:
 * NodeJS
+* Bit.ly Account
+* Telegram Bot
 
 ### Installing
 
