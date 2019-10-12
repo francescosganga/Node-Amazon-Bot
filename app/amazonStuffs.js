@@ -15,7 +15,6 @@ var consoleLog = require('../app/consoleLog');
 exports.bestSellersToTelegram = function() {
 	consoleLog.send("sending bestSellers to Telegram")
 	fs.readdir('products/', function(err, files) {
-		console.log(files);
 		found = false;
 		files.forEach(function(i) {
 			if(found !== true) {
