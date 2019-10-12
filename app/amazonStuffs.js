@@ -10,6 +10,8 @@ var fs = require('fs');
 var request = require('request');
 var path = require('path');
 
+var consoleLog = require('./app/consoleLog');
+
 exports.bestSellersToTelegram = function() {
 	consoleLog.send("sending bestSellers to Telegram")
 	fs.readdir('products/', function(err, files) {
