@@ -1,10 +1,10 @@
 var consoleLog = require('./app/consoleLog');
 var amazonStuffs = require('./app/amazonStuffs');
-var cron = require('node-cron');
 
 consoleLog.send("starting");
- 
-cron.schedule('*/15 * * * *', () => {
+
+var minutes = 15, the_interval = minutes * 60 * 1000;
+setInterval(function() {
 	amazonStuffs.updateBestSellers();
 	amazonStuffs.bestSellersToTelegram();
-});
+}, the_interval);
