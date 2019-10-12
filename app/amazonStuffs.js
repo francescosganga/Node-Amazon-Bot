@@ -16,9 +16,9 @@ exports.bestSellersToTelegram = function() {
 	consoleLog.send("sending bestSellers to Telegram")
 	fs.readdir('products/', function(err, files) {
 		found = false;
-		files.forEach(function(i) {
-			i = 'products/' + i;
-			if(found === true)
+		for(let n = 0; n < files.length; n++) {
+			i = 'products/' + files[n];
+			if(found !== true)
 				break;
 
 			if(path.extname(i) == ".json") {
