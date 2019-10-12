@@ -4,7 +4,10 @@ var cron = require('node-cron');
 
 consoleLog.send("starting");
  
-//cron.schedule('* * * * *', () => {
-//	amazonStuffs.updateBestSellers();
+cron.schedule('*/15 * * * *', () => {
+	amazonStuffs.updateBestSellers();
+});
+
+cron.schedule('*/20 * * * *', () => {
 	amazonStuffs.bestSellersToTelegram();
-//});
+});
