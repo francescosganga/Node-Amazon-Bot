@@ -38,7 +38,7 @@ exports.bestSellersToTelegram = function() {
 					}
 				}
 			}
-		});
+		};
 	});
 }
 
