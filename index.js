@@ -1,9 +1,10 @@
 var amazonStuffs = require('./app/amazonStuffs');
+var consoleLog = require('./app/consoleLog');
 var cron = require('node-cron');
 
-console.log("[Node Amazon Bot]$: started");
+consoleLog.send("starting");
  
-cron.schedule('*/15 * * * *', () => {
+cron.schedule('* * * * *', () => {
 	amazonStuffs.updateBestSellers();
 	amazonStuffs.bestSellersToTelegram();
 });

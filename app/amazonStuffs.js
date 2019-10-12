@@ -11,7 +11,9 @@ var request = require('request');
 var path = require('path');
 
 exports.bestSellersToTelegram = function() {
+	consoleLog.send("sending bestSellers to Telegram")
 	fs.readdir('products/', function(err, files) {
+		console.log(files);
 		found = false;
 		files.forEach(function(i) {
 			if(found !== true) {
@@ -25,11 +27,11 @@ exports.bestSellersToTelegram = function() {
 							fs.writeFileSync('products/' + product.asin + '.json', JSON.stringify(product));
 
 							bot.telegram.sendPhoto(config.telegram.chatId, product.image, {caption: "\n" + product.title + "\n\n 💵 " + product.price + "\n\n" + product.url});
-							console.log("[Node Amazon Bot]$: [" + product.asin + "] - product sent to Telegram!");
+							consoleLog.send("[" + product.asin + "] - product sent to Telegram!");
 							fs.unlink('products/' + product.asin + '.json');
 							found = true;
 						} else {
-							console.log("[Node Amazon Bot]$: [" + product.asin + "] - error (some fields are empty)");
+							consoleLog.send("[" + product.asin + "] - error (some fields are empty)");
 						}
 					}
 				}
@@ -41,7 +43,7 @@ exports.bestSellersToTelegram = function() {
 exports.updateBestSellers = function() {
 	request(config.server.url, function(error, response, body) {
 		if(!error && response.statusCode == 200) {
-			console.log("[Node Amazon Bot]$: starting updating bestSellers");
+			consoleLog.send("updating bestSellers");
 			body = JSON.parse(body);
 			body.forEach(function(i) {
 				if(!fs.existsSync('products/' + i.ASIN + '.json')) {
@@ -57,12 +59,12 @@ exports.updateBestSellers = function() {
 						result.url = shorten_url.url;
 						fs.writeFileSync('products/' + i.ASIN + '.json', JSON.stringify(result));
 					});
-					console.log("[Node Amazon Bot]$: [" + result.asin + "] - Saved to products/ directory");
+					consoleLog.send("[" + result.asin + "] - Saved to products/ directory");
 				}
 			});
 		} else {
-			console.log("[Node Amazon Bot]$: Error while fetching best sellers...");
-			console.log("[Node Amazon Bot]$: " + error);
+			consoleLog.send("Error while fetching best sellers...");
+			consoleLog.send("" + error);
 		}
 	})
 }
