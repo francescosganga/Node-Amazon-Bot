@@ -19,9 +19,10 @@ exports.bestSellersToTelegram = function() {
 		for(let n = 0; n < files.length; n++) {
 			i = 'products/' + files[n];
 			console.log(i);
-			if(found !== true)
+			if(found === true)
 				break;
 
+			console.log(path.extname(i);
 			if(path.extname(i) == ".json") {
 				product = fs.readFileSync(i);
 				product = JSON.parse(product);
