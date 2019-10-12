@@ -25,18 +25,20 @@ exports.bestSellersToTelegram = function() {
 			if(path.extname(i) == ".json") {
 				product = fs.readFileSync(i);
 				product = JSON.parse(product);
-				if(product.status == 'new') {
-					if(product.title !== "" && product.price != "€ " && product.url !== "") {
-						product.status = 'old';
-						fs.writeFileSync('products/' + product.asin + '.json', JSON.stringify(product));
-						bot.telegram.sendPhoto(config.telegram.chatId, product.image, {caption: "\n" + product.title + "\n\n 💵 " + product.price + "\n\n" + product.url});
-						consoleLog.send("[" + product.asin + "] - product sent to Telegram!");
-						found = true;
-					} else {
-						consoleLog.send("[" + product.asin + "] - error (some fields are empty)");
-						consoleLog.send("[" + product.asin + "] - deleting products/" + product.asin + ".json");
-						fs.unlinkSync('products/' + product.asin + '.json');
-					}
+				console.log(product);
+				if(product.status != 'new')
+					continue;
+
+				if(product.title !== "" && product.price != "€ " && product.url !== "") {
+					product.status = 'old';
+					fs.writeFileSync('products/' + product.asin + '.json', JSON.stringify(product));
+					bot.telegram.sendPhoto(config.telegram.chatId, product.image, {caption: "\n" + product.title + "\n\n 💵 " + product.price + "\n\n" + product.url});
+					consoleLog.send("[" + product.asin + "] - product sent to Telegram!");
+					found = true;
+				} else {
+					consoleLog.send("[" + product.asin + "] - error (some fields are empty)");
+					consoleLog.send("[" + product.asin + "] - deleting products/" + product.asin + ".json");
+					fs.unlinkSync('products/' + product.asin + '.json');
 				}
 			}
 		};
