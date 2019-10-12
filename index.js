@@ -1,5 +1,5 @@
-var amazonStuffs = require('./app/amazonStuffs');
 var consoleLog = require('./app/consoleLog');
+var amazonStuffs = require('./app/amazonStuffs');
 var cron = require('node-cron');
 
 consoleLog.send("starting");
