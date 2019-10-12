@@ -30,10 +30,11 @@ exports.bestSellersToTelegram = function() {
 
 							bot.telegram.sendPhoto(config.telegram.chatId, product.image, {caption: "\n" + product.title + "\n\n 💵 " + product.price + "\n\n" + product.url});
 							consoleLog.send("[" + product.asin + "] - product sent to Telegram!");
-							fs.unlinkSync('products/' + product.asin + '.json');
 							found = true;
 						} else {
 							consoleLog.send("[" + product.asin + "] - error (some fields are empty)");
+							consoleLog.send("[" + product.asin + "] - deleting products/" + product.asin + ".json");
+							fs.unlinkSync('products/' + product.asin + '.json');
 						}
 					}
 				}
