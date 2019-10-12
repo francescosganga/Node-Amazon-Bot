@@ -44,9 +44,9 @@ exports.bestSellersToTelegram = function() {
 }
 
 exports.updateBestSellers = function() {
+	consoleLog.send("updating bestSellers");
 	request(config.server.url, function(error, response, body) {
 		if(!error && response.statusCode == 200) {
-			consoleLog.send("updating bestSellers");
 			body = JSON.parse(body);
 			body.forEach(function(i) {
 				if(!fs.existsSync('products/' + i.ASIN + '.json')) {
