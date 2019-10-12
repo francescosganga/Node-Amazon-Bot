@@ -6,8 +6,5 @@ consoleLog.send("starting");
  
 cron.schedule('*/15 * * * *', () => {
 	amazonStuffs.updateBestSellers();
-});
-
-cron.schedule('*/20 * * * *', () => {
 	amazonStuffs.bestSellersToTelegram();
 });
