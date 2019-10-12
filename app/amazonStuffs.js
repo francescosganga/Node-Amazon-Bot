@@ -13,11 +13,12 @@ var path = require('path');
 var consoleLog = require('../app/consoleLog');
 
 exports.bestSellersToTelegram = function() {
-	consoleLog.send("sending bestSellers to Telegram")
+	consoleLog.send("sending bestSellers to Telegram");
 	fs.readdir('products/', function(err, files) {
 		found = false;
 		for(let n = 0; n < files.length; n++) {
 			i = 'products/' + files[n];
+			console.log(i);
 			if(found !== true)
 				break;
 
