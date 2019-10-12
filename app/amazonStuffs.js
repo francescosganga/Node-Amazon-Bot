@@ -57,7 +57,7 @@ exports.updateBestSellers = function() {
 					result.image = i.image;
 					result.status = "new";
 
-					url = "https://www.amazon." + config.amazon.country + "/dp/" + i.ASIN + "/&tag=" + config.amazon.tag;
+					url = "https://www.amazon." + config.amazon.country + "/dp/" + i.ASIN + "/?tag=" + config.amazon.tag;
 					bitly.shorten(url).then(function(shorten_url) {
 						result.url = shorten_url.url;
 						fs.writeFileSync('products/' + i.ASIN + '.json', JSON.stringify(result));
