@@ -22,7 +22,6 @@ exports.bestSellersToTelegram = function() {
 			if(found === true)
 				break;
 
-			console.log(path.extname(i);
 			if(path.extname(i) == ".json") {
 				product = fs.readFileSync(i);
 				product = JSON.parse(product);
